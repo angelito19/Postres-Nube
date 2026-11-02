@@ -204,7 +204,7 @@
 
         <!-- Aviso de alérgenos -->
         <aside id="alergenos" class="mt-8 max-w-3xl mx-auto bg-white rounded-3xl shadow-suave p-6 border-l-8 border-fresa" aria-labelledby="tituloAlergenos">
-          <h3 id="tituloAlergenos" class="font-serif text-xl md:text-2xl font-bold">⚠️ Aviso de ingredientes alérgenos</h3>
+          <h3 id="tituloAlergenos" class="font-serif text-xl md:text-2xl font-bold"> Aviso de ingredientes alérgenos</h3>
           <p class="mt-2 text-cacao/80">Nuestros postres se elaboran de forma casera en una misma cocina donde se manejan <strong>leche y derivados, huevo, trigo (gluten), soya</strong> y otros ingredientes que pueden causar alergias. Aunque cuidamos la limpieza, <strong>no podemos garantizar la ausencia total de trazas</strong>.</p>
           <p class="mt-2 text-cacao/80">Si tú o algún invitado tiene alguna alergia o intolerancia, <strong>avísanos antes de hacer tu pedido</strong> para orientarte sobre la mejor opción.</p>
         </aside>
@@ -346,7 +346,7 @@
             </div>
           </div>
           <p id="ayudaPorciones" class="-mt-2 text-sm text-cacao/70">Capacidad máxima por evento: <strong>50 personas</strong>.</p>
-          <p id="avisoFecha" class="hidden -mt-2 text-sm font-semibold text-fresaOscura">⚠️ Para fechas con menos de 48 h confirmaremos disponibilidad.</p>
+          <p id="avisoFecha" class="hidden -mt-2 text-sm font-semibold text-fresaOscura"> Para fechas con menos de 48 h confirmaremos disponibilidad.</p>
 
           <fieldset>
             <legend class="font-bold mb-1.5">Postres de interés</legend>
@@ -381,8 +381,8 @@
         <div class="grid gap-8 md:grid-cols-5 items-center">
           <div class="md:col-span-2">
             <div class="aspect-square max-w-xs mx-auto rounded-full overflow-hidden shadow-suave border-8 border-white img-fallback">
-              <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=600&q=70"
-                alt="Manos preparando postres caseros en la cocina" class="w-full h-full object-cover"
+              <img src="img/nosotros.jpeg"
+                alt="Cecilia Mayté, propietaria de Postres Nube" class="w-full h-full object-cover"
                 loading="lazy" width="600" height="600">
             </div>
           </div>
@@ -674,7 +674,7 @@
             <h3 class="font-serif text-2xl font-bold">${p.nombre}</h3>
             <p class="mt-1 text-cacao/75">${p.descripcion}</p>
             ${p.nota ? `<p class="mt-3 text-sm font-semibold bg-fresa/10 text-fresaOscura rounded-xl px-3 py-2">${p.nota}</p>` : ''}
-            ${p.alergenos ? `<p class="mt-3 text-xs text-cacao/70"><span class="font-bold">⚠️ Contiene:</span> ${p.alergenos}</p>` : ''}
+            ${p.alergenos ? `<p class="mt-3 text-xs text-cacao/70"><span class="font-bold"> Contiene:</span> ${p.alergenos}</p>` : ''}
             <fieldset class="mt-4">
               <legend class="text-sm font-bold mb-2">Presentación:</legend>
               <div class="grid ${p.opciones.length === 2 ? 'grid-cols-2' : 'grid-cols-3'} gap-2">${opciones}</div>
