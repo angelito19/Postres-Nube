@@ -106,14 +106,9 @@
         <li><a class="nav-link hover:text-fresaOscura" href="#faq">FAQ</a></li>
       </ul>
 
-      <div class="flex items-center gap-2">
-        <a href="#catalogo" class="inline-flex items-center min-h-[44px] px-4 rounded-full bg-wa hover:bg-waOscuro text-cacao text-sm font-bold shadow-suave">
-          Pedir ahora
-        </a>
-        <button id="btnMenu" type="button" class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-full border border-cacao/15" aria-expanded="false" aria-controls="menuMovil" aria-label="Abrir menú">
-          <svg id="icoMenu" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
-        </button>
-      </div>
+      <button id="btnMenu" type="button" class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-full border border-cacao/15" aria-expanded="false" aria-controls="menuMovil" aria-label="Abrir menú">
+        <svg id="icoMenu" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
     </nav>
 
     <!-- Menú móvil compacto -->
@@ -168,12 +163,12 @@
               width="1195" height="896"
               fetchpriority="high">
           </div>
-          <div class="absolute -bottom-4 left-4 bg-white rounded-2xl shadow-suave px-4 py-3 flex items-center gap-3">
+          <a href="#catalogo" class="absolute bottom-2 left-2 px-3 py-2 text-xs md:-bottom-4 md:left-4 md:px-4 md:py-3 md:text-base bg-white rounded-2xl shadow-suave flex items-center gap-3 hover:scale-105 transition-transform cursor-pointer">
             <div class="leading-tight">
               <p class="font-extrabold">El favorito: Chocoflan</p>
               <p class="text-xs text-cacao/70">Desde $40 la rebanada</p>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </section>
@@ -201,13 +196,6 @@
         <div id="gridProductos" class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
 
         <p class="mt-8 text-center text-sm text-cacao/60">* Precios de referencia. Pueden variar según temporada y decoración.</p>
-
-        <!-- Aviso de alérgenos -->
-        <aside id="alergenos" class="mt-8 max-w-3xl mx-auto bg-white rounded-3xl shadow-suave p-6 border-l-8 border-fresa" aria-labelledby="tituloAlergenos">
-          <h3 id="tituloAlergenos" class="font-serif text-xl md:text-2xl font-bold">⚠️ Aviso de ingredientes alérgenos</h3>
-          <p class="mt-2 text-cacao/80">Nuestros postres se elaboran de forma casera en una misma cocina donde se manejan <strong>leche y derivados, huevo, trigo (gluten), soya</strong> y otros ingredientes que pueden causar alergias. Aunque cuidamos la limpieza, <strong>no podemos garantizar la ausencia total de trazas</strong>.</p>
-          <p class="mt-2 text-cacao/80">Si tú o algún invitado tiene alguna alergia o intolerancia, <strong>avísanos antes de hacer tu pedido</strong> para orientarte sobre la mejor opción.</p>
-        </aside>
       </div>
     </section>
 
@@ -218,12 +206,26 @@
           <video id="videoFresas" class="block w-full h-auto cursor-pointer" src="img/video-postres.mp4"
                  autoplay muted loop playsinline preload="metadata"
                  aria-label="Video de fresas con crema de Postres Nube"></video>
-          <div class="absolute bottom-3 inset-x-3 flex justify-between gap-2">
-            <button id="btnPausa" type="button" class="min-h-[44px] px-4 rounded-full bg-white/90 text-cacao text-sm font-bold shadow-suave" aria-label="Pausar video">
-              Pausar
+          <div class="absolute bottom-3 right-3 flex gap-2">
+            <button id="btnPausa" type="button" class="w-10 h-10 rounded-full bg-cacao/60 text-crema backdrop-blur-sm grid place-items-center hover:bg-cacao/80 transition" aria-label="Pausar video">
+              <svg id="icoPlay" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+              <svg id="icoPausa" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+              </svg>
             </button>
-            <button id="btnSonido" type="button" class="min-h-[44px] px-4 rounded-full bg-white/90 text-cacao text-sm font-bold shadow-suave" aria-pressed="false">
-              Activar sonido
+            <button id="btnSonido" type="button" class="w-10 h-10 rounded-full bg-cacao/60 text-crema backdrop-blur-sm grid place-items-center hover:bg-cacao/80 transition" aria-label="Activar sonido" aria-pressed="false">
+              <svg id="icoMute" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"/>
+                <line x1="23" y1="9" x2="17" y2="15"/>
+                <line x1="17" y1="9" x2="23" y2="15"/>
+              </svg>
+              <svg id="icoUnmute" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"/>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+              </svg>
             </button>
           </div>
         </div>
@@ -297,15 +299,15 @@
       </div>
     </section>
 
-    <!-- ===================== E. COTIZADOR EVENTOS / MAYOREO ===================== -->
+    <!-- ===================== E. COTIZADOR EVENTOS Y PEDIDOS ESPECIALES ===================== -->
     <section id="eventos" class="bg-salmon text-cacao py-14">
       <div class="max-w-6xl mx-auto px-4 grid gap-10 lg:grid-cols-2 items-start">
         <div>
-          <p class="text-sm font-bold uppercase tracking-wider text-fresaOscura">Eventos y mayoreo</p>
-          <h2 class="mt-2 font-serif text-3xl md:text-4xl font-bold">Cotiza tu fiesta o pedido de reventa en 1 minuto</h2>
-          <p class="mt-4 text-cacao/80 text-lg">Cumpleaños, bautizos, velas, reuniones de oficina o negocio de reventa: llena el formulario y te respondemos por WhatsApp con tu cotización <strong>el mismo día</strong>, dentro de nuestro horario de atención.</p>
+          <p class="text-sm font-bold uppercase tracking-wider text-fresaOscura">Eventos y Pedidos Especiales</p>
+          <h2 class="mt-2 font-serif text-3xl md:text-4xl font-bold">Cotiza tu fiesta o pedido especial en 1 minuto</h2>
+          <p class="mt-4 text-cacao/80 text-lg">Cumpleaños, bautizos, velas, reuniones familiares o convivios: llena el formulario y te respondemos por WhatsApp con tu cotización <strong>el mismo día</strong>, dentro de nuestro horario de atención.</p>
           <ul class="mt-6 space-y-3 text-cacao/90">
-            <li class="flex gap-3"><span class="mt-2.5 shrink-0 w-2 h-2 rounded-full bg-fresaOscura" aria-hidden="true"></span><span>Hotcakes por mayoreo con precio especial para reventa.</span></li>
+            <li class="flex gap-3"><span class="mt-2.5 shrink-0 w-2 h-2 rounded-full bg-fresaOscura" aria-hidden="true"></span><span>Charolas y paquetes especiales para fiestas, cumpleaños y reuniones familiares.</span></li>
             <li class="flex gap-3"><span class="mt-2.5 shrink-0 w-2 h-2 rounded-full bg-fresaOscura" aria-hidden="true"></span><span>Charolas completas para eventos de 20 hasta <strong>50 personas máximo</strong>.</span></li>
             <li class="flex gap-3"><span class="mt-2.5 shrink-0 w-2 h-2 rounded-full bg-fresaOscura" aria-hidden="true"></span><span>Reserva con 48–72 h de anticipación.</span></li>
             <li class="flex gap-3"><span class="mt-2.5 shrink-0 w-2 h-2 rounded-full bg-fresaOscura" aria-hidden="true"></span><span>Respuesta el mismo día dentro del horario de atención (L–S 9:00–20:00 h, Dom 10:00–15:00 h).</span></li>
@@ -327,8 +329,8 @@
                 <span class="flex items-center justify-center text-center min-h-[48px] rounded-xl border border-cacao/20 bg-white font-semibold px-2">Evento / Fiesta</span>
               </label>
               <label class="opcion cursor-pointer">
-                <input type="radio" name="tipo" value="Compra de Mayoreo" class="sr-only">
-                <span class="flex items-center justify-center text-center min-h-[48px] rounded-xl border border-cacao/20 bg-white font-semibold px-2">Mayoreo</span>
+                <input type="radio" name="tipo" value="Pedido Grande / Especial" class="sr-only">
+                <span class="flex items-center justify-center text-center min-h-[48px] rounded-xl border border-cacao/20 bg-white font-semibold px-2">Pedido Grande / Especial</span>
               </label>
             </div>
           </fieldset>
@@ -381,8 +383,8 @@
         <div class="grid gap-8 md:grid-cols-5 items-center">
           <div class="md:col-span-2">
             <div class="aspect-square max-w-xs mx-auto rounded-full overflow-hidden shadow-suave border-8 border-white img-fallback">
-              <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=600&q=70"
-                alt="Manos preparando postres caseros en la cocina" class="w-full h-full object-cover"
+              <img src="img/postre-1.jpeg"
+                alt="Chocoflan casero recién preparado de Postres Nube" class="w-full h-full object-cover"
                 loading="lazy" width="600" height="600">
             </div>
           </div>
@@ -401,8 +403,8 @@
         <div class="mt-6 grid gap-4 md:grid-cols-3">
           <figure class="bg-white rounded-3xl shadow-suave p-6">
             <p class="text-fresa" aria-label="5 de 5 estrellas">★★★★★</p>
-            <blockquote class="mt-2 text-cacao/85">“Los hotcakes por mayoreo se me terminan rápido en mi negocio. Siempre puntual y con el mismo sabor.”</blockquote>
-            <figcaption class="mt-4 font-bold">Evelyn <span class="block text-sm font-semibold text-cacao/60">Cliente frecuente de mayoreo</span></figcaption>
+            <blockquote class="mt-2 text-cacao/85">“Pedimos mini hotcakes y donitas para nuestra reunión familiar y nos encantaron. Siempre puntual y con ese sabor casero delicioso.”</blockquote>
+            <figcaption class="mt-4 font-bold">Evelyn <span class="block text-sm font-semibold text-cacao/60">Pedido para reunión familiar</span></figcaption>
           </figure>
           <figure class="bg-white rounded-3xl shadow-suave p-6">
             <p class="text-fresa" aria-label="5 de 5 estrellas">★★★★★</p>
@@ -446,14 +448,14 @@
               ¿Qué métodos de pago aceptan?
               <span class="faq-icono text-2xl text-fresa transition-transform" aria-hidden="true">+</span>
             </summary>
-            <div class="px-5 pb-5 text-cacao/80">Aceptamos <strong>efectivo</strong> y <strong>transferencia bancaria</strong>. Para eventos y mayoreo se solicita un anticipo para apartar la fecha.</div>
+            <div class="px-5 pb-5 text-cacao/80">Aceptamos <strong>efectivo</strong> y <strong>transferencia bancaria</strong>. Para eventos y pedidos especiales se solicita un anticipo para apartar la fecha.</div>
           </details>
           <details name="faq" class="group bg-white rounded-2xl shadow-suave">
             <summary class="flex items-center justify-between gap-4 cursor-pointer min-h-[56px] px-5 py-4 font-bold text-lg">
-              ¿Hacen pedidos especiales o por mayoreo?
+              ¿Hacen pedidos especiales para fiestas?
               <span class="faq-icono text-2xl text-fresa transition-transform" aria-hidden="true">+</span>
             </summary>
-            <div class="px-5 pb-5 text-cacao/80">¡Sí! Preparamos charolas para fiestas y <strong>hotcakes y mini donitas por mayoreo</strong> para reventa con precio especial. Usa el <a href="#eventos" class="text-fresaOscura font-bold underline">cotizador</a> y te respondemos rápido.</div>
+            <div class="px-5 pb-5 text-cacao/80">¡Sí! Preparamos charolas y paquetes de <strong>chocoflan, carlota, fresas con crema, mini hotcakes y mini donitas</strong> para fiestas, cumpleaños y reuniones familiares. Usa el <a href="#eventos" class="text-fresaOscura font-bold underline">cotizador</a> y te respondemos rápido.</div>
           </details>
           <details name="faq" class="group bg-white rounded-2xl shadow-suave">
             <summary class="flex items-center justify-between gap-4 cursor-pointer min-h-[56px] px-5 py-4 font-bold text-lg">
@@ -474,7 +476,7 @@
               ¿Sus postres contienen alérgenos?
               <span class="faq-icono text-2xl text-fresa transition-transform" aria-hidden="true">+</span>
             </summary>
-            <div class="px-5 pb-5 text-cacao/80">Sí. Usamos <strong>leche, huevo, trigo (gluten) y soya</strong>, y todo se prepara en la misma cocina. Revisa el <a href="#alergenos" class="text-fresaOscura font-bold underline">aviso de alérgenos</a> y cuéntanos si tienes alguna alergia antes de pedir.</div>
+            <div class="px-5 pb-5 text-cacao/80">Sí. Usamos <strong>leche, huevo, trigo (gluten) y soya</strong>, y todo se prepara en la misma cocina. Cuéntanos si tienes alguna alergia o intolerancia antes de hacer tu pedido para orientarte.</div>
           </details>
         </div>
       </div>
@@ -503,8 +505,7 @@
     </div>
     <p class="mt-10 text-center text-xs text-crema/50">
       © <span id="anio"></span> Postres Nube. Todos los derechos reservados. ·
-      <button type="button" class="abrir-privacidad underline hover:text-fresa">Aviso de privacidad</button> ·
-      <a href="#alergenos" class="underline hover:text-fresa">Aviso de alérgenos</a>
+      <button type="button" class="abrir-privacidad underline hover:text-fresa">Aviso de privacidad</button>
     </p>
   </footer>
 
@@ -636,8 +637,6 @@
         descripcion: 'Suaves, doraditos y listos para miel, cajeta o mermelada.',
         imagen: 'img/MiniHotcakes.jpeg',
         alt: 'Plato de mini hotcakes con miel y azúcar glass',
-        etiqueta: 'Mayoreo / Reventa',
-        nota: 'Disponibles por mayoreo para reventa en tiendas, cafeterías y escuelas.',
         opciones: [
           { nombre: 'Charola pequeña', detalle: '8 pzas', precio: 40 },
           { nombre: 'Pedido grande', detalle: 'cada 5 pzas', precio: 20 },
@@ -679,10 +678,15 @@
               <legend class="text-sm font-bold mb-2">Presentación:</legend>
               <div class="grid ${p.opciones.length === 2 ? 'grid-cols-2' : 'grid-cols-3'} gap-2">${opciones}</div>
             </fieldset>
-            <div class="mt-auto pt-5">
-              <button type="button" class="btn-pedir w-full min-h-[52px] rounded-2xl bg-wa hover:bg-waOscuro text-cacao font-extrabold text-base inline-flex items-center justify-center gap-2" data-id="${p.id}">
-                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#icono-wa"/></svg>
-                Pedir · <span class="precio-sel">${formatoPrecio(p.opciones[0].precio)}</span>
+            <div class="mt-auto pt-5 flex items-center gap-2">
+              <div class="inline-flex items-center min-h-[52px] rounded-2xl border border-cacao/20 bg-crema px-1 shrink-0" role="group" aria-label="Cantidad de ${p.nombre}">
+                <button type="button" class="btn-cant w-9 h-10 rounded-xl font-extrabold text-lg hover:bg-cacao/10 transition" data-accion="restar" aria-label="Disminuir cantidad">−</button>
+                <span class="cant-valor w-7 text-center font-extrabold text-base select-none" data-cantidad="1" aria-live="polite">1</span>
+                <button type="button" class="btn-cant w-9 h-10 rounded-xl font-extrabold text-lg hover:bg-cacao/10 transition" data-accion="sumar" aria-label="Aumentar cantidad">+</button>
+              </div>
+              <button type="button" class="btn-pedir flex-1 min-h-[52px] rounded-2xl bg-wa hover:bg-waOscuro text-cacao font-extrabold text-base inline-flex items-center justify-center gap-2 px-3" data-id="${p.id}">
+                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#icono-wa"/></svg>
+                <span>Pedir · <span class="precio-sel">${formatoPrecio(p.opciones[0].precio)}</span></span>
               </button>
             </div>
           </div>
@@ -691,23 +695,47 @@
 
     grid.innerHTML = PRODUCTOS.map(tarjetaHTML).join('');
 
+    const actualizarPrecioTarjeta = (card) => {
+      const prod = PRODUCTOS.find((p) => p.id === card.dataset.id);
+      const sel = card.querySelector(`input[name="op-${prod.id}"]:checked`);
+      const op = prod.opciones[sel ? +sel.value : 0];
+      const cant = +(card.querySelector('.cant-valor')?.dataset.cantidad || 1);
+      card.querySelector('.precio-sel').textContent = formatoPrecio(op.precio * cant);
+    };
+
     // Actualiza el precio mostrado en el botón al cambiar presentación
     grid.addEventListener('change', (e) => {
       if (e.target.type !== 'radio') return;
       const card = e.target.closest('.tarjeta');
-      const prod = PRODUCTOS.find((p) => p.id === card.dataset.id);
-      card.querySelector('.precio-sel').textContent = formatoPrecio(prod.opciones[+e.target.value].precio);
+      if (card) actualizarPrecioTarjeta(card);
     });
 
-    // Botón "Pedir" — lee la presentación seleccionada
+    // Selector de cantidad (- / +) y botón "Pedir"
     grid.addEventListener('click', (e) => {
+      const btnCant = e.target.closest('.btn-cant');
+      if (btnCant) {
+        const card = btnCant.closest('.tarjeta');
+        const spanCant = card.querySelector('.cant-valor');
+        let cant = +(spanCant.dataset.cantidad || 1);
+        if (btnCant.dataset.accion === 'sumar' && cant < 20) cant++;
+        if (btnCant.dataset.accion === 'restar' && cant > 1) cant--;
+        spanCant.dataset.cantidad = String(cant);
+        spanCant.textContent = String(cant);
+        actualizarPrecioTarjeta(card);
+        return;
+      }
+
       const btn = e.target.closest('.btn-pedir');
       if (!btn) return;
+      const card = btn.closest('.tarjeta');
       const prod = PRODUCTOS.find((p) => p.id === btn.dataset.id);
-      const sel = grid.querySelector(`input[name="op-${prod.id}"]:checked`);
+      const sel = card.querySelector(`input[name="op-${prod.id}"]:checked`);
       const op = prod.opciones[sel ? +sel.value : 0];
-      const presentacion = `${op.nombre}${op.detalle ? ` - ${op.detalle}` : ''} (${formatoPrecio(op.precio)})`;
-      abrirWa(`Hola Ceci, quiero pedir ${prod.nombre} en presentación ${presentacion}. ¿Tienes disponibilidad?`);
+      const cant = +(card.querySelector('.cant-valor')?.dataset.cantidad || 1);
+      const total = op.precio * cant;
+      const nombreOp = `${op.nombre}${op.detalle ? ` - ${op.detalle}` : ''}`;
+      const detallePrecio = `${formatoPrecio(op.precio)} c/u - Total: ${formatoPrecio(total)}`;
+      abrirWa(`Hola Ceci, quiero pedir ${cant}x ${prod.nombre} en presentación ${nombreOp} (${detallePrecio}). ¿Tienes disponibilidad?`);
     });
 
     /* =========================================================
@@ -715,17 +743,25 @@
     ========================================================= */
     const videoFresas = document.getElementById('videoFresas');
     const btnSonido = document.getElementById('btnSonido');
+    const icoMute = document.getElementById('icoMute');
+    const icoUnmute = document.getElementById('icoUnmute');
     btnSonido.addEventListener('click', () => {
       videoFresas.muted = !videoFresas.muted;
       if (!videoFresas.muted) videoFresas.play();
-      btnSonido.setAttribute('aria-pressed', String(!videoFresas.muted));
-      btnSonido.textContent = videoFresas.muted ? 'Activar sonido' : 'Silenciar';
+      const activo = !videoFresas.muted;
+      btnSonido.setAttribute('aria-pressed', String(activo));
+      btnSonido.setAttribute('aria-label', activo ? 'Silenciar video' : 'Activar sonido');
+      icoMute.classList.toggle('hidden', activo);
+      icoUnmute.classList.toggle('hidden', !activo);
     });
     // Pausar / reproducir (botón o toque sobre el video)
     const btnPausa = document.getElementById('btnPausa');
+    const icoPlay = document.getElementById('icoPlay');
+    const icoPausa = document.getElementById('icoPausa');
     const actualizarPausa = () => {
       const pausado = videoFresas.paused;
-      btnPausa.textContent = pausado ? 'Reproducir' : 'Pausar';
+      icoPlay.classList.toggle('hidden', !pausado);
+      icoPausa.classList.toggle('hidden', pausado);
       btnPausa.setAttribute('aria-label', pausado ? 'Reproducir video' : 'Pausar video');
     };
     const alternarVideo = () => { videoFresas.paused ? videoFresas.play() : videoFresas.pause(); };
@@ -817,13 +853,13 @@
       avisoFecha.classList.toggle('hidden', dias >= 48);
     });
 
-    // Límite de 50 personas solo para eventos (mayoreo no tiene tope)
+    // Límite de 50 personas para eventos
     const fPorciones = document.getElementById('fPorciones');
     const ayudaPorciones = document.getElementById('ayudaPorciones');
     form.querySelectorAll('input[name="tipo"]').forEach((r) => r.addEventListener('change', () => {
       const esEvento = form.querySelector('input[name="tipo"]:checked').value === 'Evento / Fiesta';
       if (esEvento) fPorciones.max = '50'; else fPorciones.removeAttribute('max');
-      fPorciones.placeholder = esEvento ? 'Máx. 50' : 'Ej. 100';
+      fPorciones.placeholder = esEvento ? 'Máx. 50' : 'Ej. 30';
       ayudaPorciones.hidden = !esEvento;
     }));
 
@@ -870,9 +906,7 @@
       ].filter((l) => l !== null).join('\n');
 
       exitoForm.classList.remove('hidden');
-      const url = crearLinkWa(mensaje);
-      // Redirección en la misma pestaña para evitar bloqueadores de pop-ups
-      setTimeout(() => { window.location.href = url; }, 1200);
+      setTimeout(() => { abrirWa(mensaje); }, 600);
       setTimeout(() => exitoForm.classList.add('hidden'), 4000);
     });
 
