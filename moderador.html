@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hoja del Moderador · Pruebas de Usabilidad | Postres Nube</title>
+  <meta name="theme-color" content="#FFFDF9">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            crema: '#FFFDF9',
+            vainilla: '#FBF3E8',
+            cacao: '#2C1A12',
+            fresa: '#E07A5F',
+            salmon: '#F6C1AD',
+            fresaOscura: '#C8553D',
+            wa: '#A8D5BA',
+            waOscuro: '#8FC7A5',
+          },
+          fontFamily: {
+            sans: ['Nunito', 'system-ui', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+          },
+          boxShadow: {
+            suave: '0 4px 20px -6px rgba(44, 26, 18, 0.15)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    body { -webkit-tap-highlight-color: transparent; }
+    .pill input:checked + span {
+      background: #2C1A12;
+      color: #FFFDF9;
+      border-color: #2C1A12;
+    }
+    @media print {
+      body { background: #fff !important; font-size: 11pt; }
+      header, .no-print { display: none !important; }
+      .print-card { box-shadow: none !important; border: 1px solid #d6ccc2 !important; break-inside: avoid; }
+      textarea, input[type="text"], input[type="number"], select {
+        border: 1px solid #999 !important;
+        background: #fff !important;
+      }
+      .print-break { break-before: page; }
+    }
+  </style>
+</head>
+
+<body class="bg-crema text-cacao font-sans antialiased">
+
+  <!-- Barra superior de herramientas (no se imprime) -->
+  <header class="sticky top-0 z-40 bg-crema/95 backdrop-blur border-b border-cacao/10 no-print">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <img src="img/logo-icono.png" alt="" class="h-8 w-auto" width="264" height="238">
+        <div>
+          <p class="font-serif font-bold leading-none text-lg">Postres Nube <span class="text-fresa italic text-sm font-sans font-extrabold">· Moderador</span></p>
+          <p id="estadoGuardado" class="text-[11px] text-cacao/60">Autoguardado local activo</p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2">
+        <button id="btnImprimir" type="button" class="min-h-[40px] px-3.5 rounded-xl border border-cacao/20 bg-white text-xs font-bold hover:bg-vainilla">
+          🖨️ Imprimir / PDF
+        </button>
+        <button id="btnCopiarMd" type="button" class="min-h-[40px] px-3.5 rounded-xl bg-cacao text-crema text-xs font-bold hover:bg-cacao/90">
+          Copiar reporte
+        </button>
+        <button id="btnCsvMod" type="button" class="min-h-[40px] px-3.5 rounded-xl bg-wa hover:bg-waOscuro text-cacao text-xs font-extrabold">
+          Descargar CSV
+        </button>
+        <button id="btnLimpiar" type="button" class="min-h-[40px] px-3 rounded-xl text-xs font-bold text-fresaOscura hover:bg-fresa/10">
+          Nueva sesión
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 py-6 sm:py-10 space-y-6">
+
+    <!-- Título para impresión -->
+    <div class="hidden print:block border-b-2 border-cacao pb-2 mb-4">
+      <h1 class="font-serif text-2xl font-bold">Hoja de Registro del Moderador · Postres Nube (Etapa 5 DCU)</h1>
+    </div>
+
+    <!-- Datos de la sesión -->
+    <section class="bg-white rounded-3xl p-5 sm:p-6 shadow-suave print-card">
+      <h2 class="font-serif text-xl font-bold mb-4">1. Datos de la sesión de prueba</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div>
+          <label for="mParticipante" class="block text-xs font-bold mb-1">Participante # / Iniciales</label>
+          <input id="mParticipante" data-campo="participante" type="text" placeholder="Ej. P1 - Ana M."
+            class="w-full min-h-[42px] rounded-xl border border-cacao/20 bg-crema px-3 text-sm">
+        </div>
+        <div>
+          <label for="mModerador" class="block text-xs font-bold mb-1">Moderador / Entrevistador</label>
+          <input id="mModerador" data-campo="moderador" type="text" placeholder="Tu nombre"
+            class="w-full min-h-[42px] rounded-xl border border-cacao/20 bg-crema px-3 text-sm">
+        </div>
+        <div>
+          <label for="mFecha" class="block text-xs font-bold mb-1">Fecha y hora</label>
+          <input id="mFecha" data-campo="fecha" type="text" placeholder="Ej. 17/11/2026 16:30"
+            class="w-full min-h-[42px] rounded-xl border border-cacao/20 bg-crema px-3 text-sm">
+        </div>
+        <div>
+          <label for="mDispositivo" class="block text-xs font-bold mb-1">Dispositivo / Modalidad</label>
+          <input id="mDispositivo" data-campo="dispositivo" type="text" placeholder="Ej. Celular Android · Presencial"
+            class="w-full min-h-[42px] rounded-xl border border-cacao/20 bg-crema px-3 text-sm">
+        </div>
+      </div>
+    </section>
+
+    <!-- Guion para leer al participante -->
+    <aside class="bg-vainilla rounded-3xl p-5 sm:p-6 border-l-8 border-fresa print-card">
+      <p class="text-xs font-extrabold uppercase tracking-wider text-fresaOscura">Leer al participante antes de empezar</p>
+      <blockquote class="mt-2 text-sm sm:text-base leading-relaxed italic text-cacao/90">
+        “Hola. Estamos probando el sitio web de Postres Nube para ver qué tan fácil es usarlo. Importante: no te estamos evaluando a ti, estamos evaluando la página; si algo no se entiende o te cuesta trabajo, es culpa de nuestro diseño y nos ayuda mucho descubrirlo. Te voy a pedir que abras la página en tu celular y realices 5 tareas cortas pensando en voz alta (diciéndome qué buscas y qué piensas mientras navegas).”
+      </blockquote>
+    </aside>
+
+    <!-- Las 5 Tareas -->
+    <section class="space-y-4">
+      <div class="flex items-center justify-between">
+        <h2 class="font-serif text-2xl font-bold">2. Observación por tarea (Eficacia, eficiencia y dudas)</h2>
+        <span class="text-xs font-semibold text-cacao/65 no-print">Usa el cronómetro o anota manualmente</span>
+      </div>
+
+      <div id="contenedorTareas" class="space-y-4"></div>
+    </section>
+
+    <!-- Hallazgos globales para Etapa 6 -->
+    <section class="bg-white rounded-3xl p-5 sm:p-6 shadow-suave space-y-4 print-card print-break">
+      <h2 class="font-serif text-xl font-bold">3. Síntesis de hallazgos (Insumo para Etapa 6 · Iteración)</h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label for="mPositivo" class="block text-xs font-bold mb-1">Lo que funcionó bien (aciertos observados)</label>
+          <textarea id="mPositivo" data-campo="positivo" rows="4" placeholder="Ej. Encontró rápido el botón de WhatsApp y entendió los precios…"
+            class="w-full rounded-xl border border-cacao/20 bg-crema px-3 py-2 text-sm"></textarea>
+        </div>
+        <div>
+          <label for="mProblemas" class="block text-xs font-bold mb-1">Puntos de fricción / errores críticos a corregir</label>
+          <textarea id="mProblemas" data-campo="problemas" rows="4" placeholder="Ej. Dudó cuántas rebanadas trae la Charola Completa; no vio el horario al primer vistazo…"
+            class="w-full rounded-xl border border-cacao/20 bg-crema px-3 py-2 text-sm"></textarea>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4 items-center pt-1">
+        <fieldset>
+          <legend class="text-xs font-bold mb-1.5">Severidad general de las fallas detectadas</legend>
+          <div class="grid grid-cols-3 gap-2">
+            <label class="pill cursor-pointer">
+              <input type="radio" name="severidad" data-campo="severidad" value="Baja (ajustes menores)" class="sr-only">
+              <span class="block text-center py-2 px-2 rounded-xl border border-cacao/20 bg-crema text-xs font-bold">Baja</span>
+            </label>
+            <label class="pill cursor-pointer">
+              <input type="radio" name="severidad" data-campo="severidad" value="Media (mejoras de claridad)" class="sr-only">
+              <span class="block text-center py-2 px-2 rounded-xl border border-cacao/20 bg-crema text-xs font-bold">Media</span>
+            </label>
+            <label class="pill cursor-pointer">
+              <input type="radio" name="severidad" data-campo="severidad" value="Alta (bloqueo en flujo)" class="sr-only">
+              <span class="block text-center py-2 px-2 rounded-xl border border-cacao/20 bg-crema text-xs font-bold">Alta</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div>
+          <label for="mCuestionarioOk" class="block text-xs font-bold mb-1">¿Completó el cuestionario final (cuestionario.html)?</label>
+          <select id="mCuestionarioOk" data-campo="cuestionarioOk" class="w-full min-h-[42px] rounded-xl border border-cacao/20 bg-crema px-3 text-sm font-semibold">
+            <option value="">Seleccionar…</option>
+            <option value="Sí, completado">Sí, completado</option>
+            <option value="Pendiente por enviar">Pendiente por enviar</option>
+            <option value="Aplicado en papel">Aplicado en papel</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    const TAREAS = [
+      {
+        id: 't1',
+        titulo: 'Tarea 1 — Comparación de opciones y pedido con cantidad',
+        guion: '“Imagina que es domingo y tienes antojo de un postre. Entra al catálogo, compara el precio y descripción del Chocoflan contra la Carlota de limón, y haz todo el proceso para pedir 3 rebanadas individuales de Chocoflan hasta que se abra la pantalla de WhatsApp con tu mensaje listo.”',
+        esperado: 'Usa o explora el catálogo, cambia cantidad a 3 (- / +), ve total $120 y abre WhatsApp con "3x Chocoflan".',
+      },
+      {
+        id: 't2',
+        titulo: 'Tarea 2 — Encontrar una opción para un evento de 50 invitados',
+        guion: '“Vas a organizar una fiesta familiar el próximo sábado para 50 invitados y quieres ofrecer postres caseros. Busca en la página cuál es la mejor manera de pedir o cotizar postres para 50 personas y realiza la solicitud.”',
+        esperado: 'Ubica la sección Eventos / Pedidos Especiales (#eventos) sin perderse intentando sumar charolas sueltas.',
+      },
+      {
+        id: 't3',
+        titulo: 'Tarea 3 — Consultar condiciones de contratación y alérgenos',
+        guion: '“Antes de confirmar tu compra, necesitas saber tres cosas sin escribirle a la dueña: 1) Con cuántas horas de anticipación debes pedir para un evento, 2) Si aceptan pago por transferencia bancaria, y 3) Si la Carlota de limón contiene gluten o soya. Localiza esos tres datos en la página.”',
+        esperado: 'Encuentra: 48–72 h, transferencia bancaria (Cómo pedir / FAQ) y alérgenos de Carlota en su tarjeta.',
+        checklist: [
+          { id: 't3_ant', label: 'Anticipación (48–72 h)' },
+          { id: 't3_pago', label: 'Transferencia bancaria' },
+          { id: 't3_alerg', label: 'Carlota: gluten y soya' },
+        ],
+      },
+      {
+        id: 't4',
+        titulo: 'Tarea 4 — Validación de errores y límites en el cotizador',
+        guion: '“En la sección del cotizador de eventos, intenta enviar el formulario dejando vacío tu nombre o seleccionando ‘Evento / Fiesta’ para 60 personas. Observa qué te indica la página y corrígelo para poder enviar la cotización.”',
+        esperado: 'Identifica la alerta roja (nombre faltante o máximo 50 personas), corrige el dato y genera el mensaje.',
+      },
+      {
+        id: 't5',
+        titulo: 'Tarea 5 — Localizar horarios y contacto directo para dudas',
+        guion: '“Imagina que tienes una duda rápida que no viste en la página. Encuentra en qué horario atiende Ceci los domingos y usa el acceso rápido para mandarle un mensaje general por WhatsApp.”',
+        esperado: 'Localiza horario dominical (10:00 – 15:00 h en FAQ o Footer) y toca el botón flotante (FAB) de WhatsApp.',
+      },
+    ];
+
+    const contenedor = document.getElementById('contenedorTareas');
+
+    contenedor.innerHTML = TAREAS.map((t) => `
+      <article class="bg-white rounded-3xl p-5 sm:p-6 shadow-suave space-y-4 print-card" data-tarea="${t.id}">
+        <div class="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <h3 class="font-bold text-base sm:text-lg">${t.titulo}</h3>
+            <p class="text-xs text-cacao/65 mt-0.5"><strong>Ruta esperada:</strong> ${t.esperado}</p>
+          </div>
+          <!-- Cronómetro por tarea -->
+          <div class="flex items-center gap-1.5 bg-vainilla rounded-xl px-2.5 py-1.5 no-print">
+            <span class="font-mono text-sm font-extrabold w-14 text-center" id="reloj-${t.id}">00:00</span>
+            <button type="button" class="btn-timer px-2.5 py-1 rounded-lg bg-cacao text-crema text-xs font-bold" data-id="${t.id}" data-accion="toggle">Iniciar</button>
+            <button type="button" class="btn-timer px-2 py-1 rounded-lg border border-cacao/20 text-xs font-bold" data-id="${t.id}" data-accion="reset">↺</button>
+          </div>
+        </div>
+
+        <p class="text-xs sm:text-sm bg-crema rounded-xl p-3 border border-cacao/10 italic text-cacao/85">${t.guion}</p>
+
+        ${t.checklist ? `
+          <div class="flex flex-wrap gap-3 text-xs font-bold">
+            <span class="text-cacao/70">Datos encontrados:</span>
+            ${t.checklist.map((c) => `
+              <label class="inline-flex items-center gap-1.5 cursor-pointer">
+                <input type="checkbox" data-campo="${c.id}" class="w-4 h-4 accent-fresaOscura">
+                <span>${c.label}</span>
+              </label>`).join('')}
+          </div>` : ''}
+
+        <div class="grid sm:grid-cols-12 gap-3 items-end">
+          <div class="sm:col-span-6">
+            <p class="text-xs font-bold mb-1.5">Resultado (Eficacia)</p>
+            <div class="grid grid-cols-3 gap-1.5">
+              <label class="pill cursor-pointer">
+                <input type="radio" name="res-${t.id}" data-campo="${t.id}_resultado" value="Sin ayuda" class="sr-only">
+                <span class="block text-center py-2 px-1 rounded-xl border border-cacao/20 bg-crema text-xs font-bold">Sin ayuda</span>
+              </label>
+              <label class="pill cursor-pointer">
+                <input type="radio" name="res-${t.id}" data-campo="${t.id}_resultado" value="Con ayuda" class="sr-only">
+                <span class="block text-center py-2 px-1 rounded-xl border border-cacao/20 bg-crema text-xs font-bold">Con ayuda</span>
+              </label>
+              <label class="pill cursor-pointer">
+                <input type="radio" name="res-${t.id}" data-campo="${t.id}_resultado" value="Falló / Abandonó" class="sr-only">
+                <span class="block text-center py-2 px-1 rounded-xl border border-cacao/20 bg-crema text-xs font-bold">Falló</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="sm:col-span-3">
+            <label for="${t.id}_tiempo" class="block text-xs font-bold mb-1">Tiempo (seg.)</label>
+            <input id="${t.id}_tiempo" data-campo="${t.id}_tiempo" type="text" placeholder="Ej. 35s"
+              class="w-full min-h-[38px] rounded-xl border border-cacao/20 bg-crema px-3 text-sm font-mono">
+          </div>
+
+          <div class="sm:col-span-3">
+            <label for="${t.id}_errores" class="block text-xs font-bold mb-1">Errores / dudas (#)</label>
+            <input id="${t.id}_errores" data-campo="${t.id}_errores" type="number" min="0" placeholder="0"
+              class="w-full min-h-[38px] rounded-xl border border-cacao/20 bg-crema px-3 text-sm">
+          </div>
+        </div>
+
+        <div>
+          <label for="${t.id}_notas" class="block text-xs font-bold mb-1">Notas de observación (qué dijo / dónde dudó)</label>
+          <textarea id="${t.id}_notas" data-campo="${t.id}_notas" rows="2" placeholder="Anota comentarios en voz alta, clics erróneos o gestos de duda…"
+            class="w-full rounded-xl border border-cacao/20 bg-crema px-3 py-2 text-sm"></textarea>
+        </div>
+      </article>
+    `).join('');
+
+    /* =========================================================
+       CRONÓMETROS POR TAREA
+    ========================================================= */
+    const timers = {};
+    const fmt = (s) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+
+    contenedor.addEventListener('click', (e) => {
+      const btn = e.target.closest('.btn-timer');
+      if (!btn) return;
+      const id = btn.dataset.id;
+      const reloj = document.getElementById(`reloj-${id}`);
+      const inputTiempo = document.getElementById(`${id}_tiempo`);
+      if (!timers[id]) timers[id] = { seg: 0, int: null };
+      const t = timers[id];
+
+      if (btn.dataset.accion === 'reset') {
+        clearInterval(t.int);
+        t.int = null;
+        t.seg = 0;
+        reloj.textContent = '00:00';
+        const toggleBtn = btn.previousElementSibling;
+        toggleBtn.textContent = 'Iniciar';
+        return;
+      }
+
+      if (t.int) {
+        clearInterval(t.int);
+        t.int = null;
+        btn.textContent = 'Reanudar';
+        inputTiempo.value = `${t.seg}s`;
+        guardarEstado();
+      } else {
+        btn.textContent = 'Pausar';
+        t.int = setInterval(() => {
+          t.seg++;
+          reloj.textContent = fmt(t.seg);
+        }, 1000);
+      }
+    });
+
+    /* =========================================================
+       AUTOGUARDADO Y EXPORTACIÓN
+    ========================================================= */
+    const KEY_STORAGE = 'postres_nube_moderador_actual';
+
+    function leerFormulario() {
+      const data = {};
+      document.querySelectorAll('[data-campo]').forEach((el) => {
+        const k = el.dataset.campo;
+        if (el.type === 'radio') {
+          if (el.checked) data[k] = el.value;
+          else if (!(k in data)) data[k] = '';
+        } else if (el.type === 'checkbox') {
+          data[k] = el.checked ? 'Sí' : 'No';
+        } else {
+          data[k] = el.value;
+        }
+      });
+      return data;
+    }
+
+    function guardarEstado() {
+      localStorage.setItem(KEY_STORAGE, JSON.stringify(leerFormulario()));
+      document.getElementById('estadoGuardado').textContent = `Guardado ${new Date().toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' })}`;
+    }
+
+    function restaurarEstado() {
+      const raw = localStorage.getItem(KEY_STORAGE);
+      if (!raw) {
+        document.getElementById('mFecha').value = new Date().toLocaleString('es-MX', { dateStyle: 'short', timeStyle: 'short' });
+        return;
+      }
+      const data = JSON.parse(raw);
+      document.querySelectorAll('[data-campo]').forEach((el) => {
+        const k = el.dataset.campo;
+        if (!(k in data)) return;
+        if (el.type === 'radio') el.checked = (el.value === data[k]);
+        else if (el.type === 'checkbox') el.checked = (data[k] === 'Sí');
+        else el.value = data[k];
+      });
+    }
+
+    document.addEventListener('input', (e) => { if (e.target.matches('[data-campo]')) guardarEstado(); });
+    document.addEventListener('change', (e) => { if (e.target.matches('[data-campo]')) guardarEstado(); });
+    restaurarEstado();
+
+    document.getElementById('btnImprimir').addEventListener('click', () => window.print());
+
+    async function copiarAlPortapapeles(texto) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(texto);
+        return;
+      }
+      const ta = document.createElement('textarea');
+      ta.value = texto;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+    }
+
+    document.getElementById('btnCopiarMd').addEventListener('click', async () => {
+      const d = leerFormulario();
+      const lineas = [
+        `# Registro de Prueba · Postres Nube`,
+        `- **Participante:** ${d.participante || '-'} | **Moderador:** ${d.moderador || '-'}`,
+        `- **Fecha:** ${d.fecha || '-'} | **Dispositivo:** ${d.dispositivo || '-'}`,
+        ``,
+        `## Resultados por Tarea`,
+        ...TAREAS.map((t) => `- **${t.titulo}:** ${d[`${t.id}_resultado`] || '-'} | Tiempo: ${d[`${t.id}_tiempo`] || '-'} | Errores: ${d[`${t.id}_errores`] || '0'} | Notas: ${d[`${t.id}_notas`] || '-'}`),
+        `- **Tarea 3 checklist:** Anticipación=${d.t3_ant}, Transferencia=${d.t3_pago}, Alérgenos=${d.t3_alerg}`,
+        ``,
+        `## Hallazgos (Etapa 6)`,
+        `- **Severidad:** ${d.severidad || '-'} | **Cuestionario:** ${d.cuestionarioOk || '-'}`,
+        `- **Aciertos:** ${d.positivo || '-'}`,
+        `- **Problemas a corregir:** ${d.problemas || '-'}`,
+      ].join('\n');
+      await copiarAlPortapapeles(lineas);
+      const btn = document.getElementById('btnCopiarMd');
+      btn.textContent = '✓ Copiado';
+      setTimeout(() => { btn.textContent = 'Copiar reporte'; }, 2000);
+    });
+
+    document.getElementById('btnCsvMod').addEventListener('click', () => {
+      const d = leerFormulario();
+      const headers = Object.keys(d);
+      const escapar = (v) => `"${String(v ?? '').replace(/"/g, '""').replace(/\r?\n/g, ' ')}"`;
+      const csv = '\uFEFF' + headers.join(',') + '\n' + headers.map((h) => escapar(d[h])).join(',') + '\n';
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      const slug = (d.participante || 'sesion').toLowerCase().replace(/[^a-z0-9]+/gi, '-');
+      a.download = `moderador-postres-nube-${slug}.csv`;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+
+    document.getElementById('btnLimpiar').addEventListener('click', () => {
+      if (!confirm('¿Limpiar todos los campos para iniciar una nueva sesión con otro participante?')) return;
+      localStorage.removeItem(KEY_STORAGE);
+      document.querySelectorAll('[data-campo]').forEach((el) => {
+        if (el.type === 'radio' || el.type === 'checkbox') el.checked = false;
+        else el.value = '';
+      });
+      document.getElementById('mFecha').value = new Date().toLocaleString('es-MX', { dateStyle: 'short', timeStyle: 'short' });
+      Object.keys(timers).forEach((id) => {
+        clearInterval(timers[id].int);
+        timers[id] = { seg: 0, int: null };
+        document.getElementById(`reloj-${id}`).textContent = '00:00';
+        const toggleBtn = contenedor.querySelector(`.btn-timer[data-id="${id}"][data-accion="toggle"]`);
+        if (toggleBtn) toggleBtn.textContent = 'Iniciar';
+      });
+      guardarEstado();
+    });
+  </script>
+</body>
+</html>

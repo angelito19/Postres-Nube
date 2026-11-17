@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuestionario de Usabilidad | Postres Nube</title>
+  <meta name="description" content="Cuestionario de evaluación de usabilidad (Etapa 5 DCU) para el sitio web de Postres Nube.">
+  <meta name="theme-color" content="#FFFDF9">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            crema: '#FFFDF9',
+            vainilla: '#FBF3E8',
+            cacao: '#2C1A12',
+            fresa: '#E07A5F',
+            salmon: '#F6C1AD',
+            fresaOscura: '#C8553D',
+            wa: '#A8D5BA',
+            waOscuro: '#8FC7A5',
+          },
+          fontFamily: {
+            sans: ['Nunito', 'system-ui', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+          },
+          boxShadow: {
+            suave: '0 4px 20px -6px rgba(44, 26, 18, 0.15)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { -webkit-tap-highlight-color: transparent; }
+    .opcion input:checked + span {
+      background: #2C1A12;
+      color: #FFFDF9;
+      border-color: #2C1A12;
+    }
+    .opcion input:focus-visible + span {
+      outline: 3px solid #E07A5F;
+      outline-offset: 2px;
+    }
+    .escala-btn input:checked + span {
+      background: #E07A5F;
+      color: #FFFDF9;
+      border-color: #E07A5F;
+      transform: translateY(-1px);
+    }
+    .escala-btn input:focus-visible + span {
+      outline: 3px solid #2C1A12;
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+
+<body class="bg-crema text-cacao font-sans antialiased">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-crema/95 backdrop-blur border-b border-cacao/10">
+    <div class="max-w-3xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+      <a href="index.html" class="flex items-center gap-2 font-serif text-lg sm:text-xl font-bold leading-none">
+        <img src="img/logo-icono.png" alt="" class="h-9 w-auto" width="264" height="238">
+        <span class="text-fresa italic">Postres Nube</span>
+      </a>
+      <a href="index.html" class="inline-flex items-center min-h-[44px] px-4 rounded-full border border-cacao/15 bg-white text-sm font-bold hover:bg-vainilla transition">
+        ← Ver página
+      </a>
+    </div>
+  </header>
+
+  <main class="max-w-3xl mx-auto px-4 py-8 sm:py-12">
+
+    <!-- Portada del cuestionario -->
+    <section class="bg-vainilla/80 rounded-3xl p-6 sm:p-8 shadow-suave border border-cacao/10">
+      <p class="inline-block text-xs font-extrabold uppercase tracking-wider text-fresaOscura bg-fresa/15 rounded-full px-3 py-1">
+        Evaluación de usabilidad · Etapa 5 DCU
+      </p>
+      <h1 class="mt-3 font-serif text-3xl sm:text-4xl font-bold leading-tight">
+        Cuéntanos cómo fue tu experiencia
+      </h1>
+      <p class="mt-3 text-cacao/80 leading-relaxed">
+        Este cuestionario se responde <strong>después de realizar las tareas en la página</strong>. No hay respuestas correctas o incorrectas: evaluamos el diseño del sitio, no a ti. Te tomará unos 2–3 minutos.
+      </p>
+
+      <!-- Barra de progreso -->
+      <div class="mt-5">
+        <div class="flex justify-between text-xs font-bold text-cacao/70 mb-1.5">
+          <span>Progreso de preguntas obligatorias</span>
+          <span id="progresoTexto">0 / 16</span>
+        </div>
+        <div class="h-2.5 w-full rounded-full bg-white overflow-hidden border border-cacao/10">
+          <div id="progresoBarra" class="h-full bg-waOscuro transition-all duration-300" style="width: 0%"></div>
+        </div>
+      </div>
+    </section>
+
+    <form id="formEvaluacion" class="mt-8 space-y-8" novalidate>
+
+      <!-- ================= SECCIÓN A ================= -->
+      <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-suave space-y-6" aria-labelledby="secA">
+        <header class="border-b border-cacao/10 pb-4">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-fresaOscura">Sección A</p>
+          <h2 id="secA" class="font-serif text-2xl font-bold">Datos del participante</h2>
+        </header>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label for="q1" class="block font-bold mb-1.5">1. Nombre o iniciales <span class="text-fresaOscura">*</span></label>
+            <input id="q1" name="q1_nombre" type="text" required placeholder="Ej. A. López"
+              class="w-full min-h-[48px] rounded-xl border border-cacao/20 bg-crema px-4 text-base focus:outline-none focus:ring-2 focus:ring-fresa">
+          </div>
+          <div>
+            <label for="q2" class="block font-bold mb-1.5">2. Edad (años) <span class="text-fresaOscura">*</span></label>
+            <input id="q2" name="q2_edad" type="number" inputmode="numeric" min="10" max="99" required placeholder="Ej. 24"
+              class="w-full min-h-[48px] rounded-xl border border-cacao/20 bg-crema px-4 text-base focus:outline-none focus:ring-2 focus:ring-fresa">
+          </div>
+        </div>
+
+        <fieldset>
+          <legend class="font-bold mb-2">3. Dispositivo utilizado durante la prueba <span class="text-fresaOscura">*</span></legend>
+          <div class="grid sm:grid-cols-3 gap-2.5">
+            <label class="opcion cursor-pointer">
+              <input type="radio" name="q3_dispositivo" value="Teléfono celular (Android / iOS)" class="sr-only" required>
+              <span class="flex items-center justify-center text-center min-h-[52px] rounded-xl border border-cacao/20 bg-crema px-3 py-2 text-sm font-semibold transition">📱 Teléfono celular (Android / iOS)</span>
+            </label>
+            <label class="opcion cursor-pointer">
+              <input type="radio" name="q3_dispositivo" value="Computadora de escritorio / Laptop" class="sr-only">
+              <span class="flex items-center justify-center text-center min-h-[52px] rounded-xl border border-cacao/20 bg-crema px-3 py-2 text-sm font-semibold transition">💻 Computadora / Laptop</span>
+            </label>
+            <label class="opcion cursor-pointer">
+              <input type="radio" name="q3_dispositivo" value="Tableta" class="sr-only">
+              <span class="flex items-center justify-center text-center min-h-[52px] rounded-xl border border-cacao/20 bg-crema px-3 py-2 text-sm font-semibold transition">📲 Tableta</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend class="font-bold mb-2">4. ¿Con qué frecuencia compras postres caseros o realizas pedidos locales por WhatsApp? <span class="text-fresaOscura">*</span></legend>
+          <div class="grid gap-2.5">
+            <label class="opcion cursor-pointer">
+              <input type="radio" name="q4_frecuencia" value="Frecuentemente (casi cada fin de semana por antojo)" class="sr-only" required>
+              <span class="flex items-center min-h-[48px] rounded-xl border border-cacao/20 bg-crema px-4 py-2 text-sm font-semibold transition">Frecuentemente (casi cada fin de semana por antojo)</span>
+            </label>
+            <label class="opcion cursor-pointer">
+              <input type="radio" name="q4_frecuencia" value="Ocasionalmente (para cumpleaños, reuniones o fechas especiales)" class="sr-only">
+              <span class="flex items-center min-h-[48px] rounded-xl border border-cacao/20 bg-crema px-4 py-2 text-sm font-semibold transition">Ocasionalmente (para cumpleaños, reuniones o fechas especiales)</span>
+            </label>
+            <label class="opcion cursor-pointer">
+              <input type="radio" name="q4_frecuencia" value="Casi nunca" class="sr-only">
+              <span class="flex items-center min-h-[48px] rounded-xl border border-cacao/20 bg-crema px-4 py-2 text-sm font-semibold transition">Casi nunca</span>
+            </label>
+          </div>
+        </fieldset>
+      </section>
+
+      <!-- ================= SECCIÓN B ================= -->
+      <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-suave space-y-6" aria-labelledby="secB">
+        <header class="border-b border-cacao/10 pb-4">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-fresaOscura">Sección B · Escala SEQ</p>
+          <h2 id="secB" class="font-serif text-2xl font-bold">Facilidad por tarea</h2>
+          <p class="mt-1 text-sm text-cacao/75">Califica del <strong>1 (Muy difícil / Confuso)</strong> al <strong>5 (Muy fácil / Directo)</strong> qué tan fácil te resultó cada tarea.</p>
+        </header>
+        <div id="bloqueSeccionB" class="space-y-6"></div>
+      </section>
+
+      <!-- ================= SECCIÓN C ================= -->
+      <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-suave space-y-6" aria-labelledby="secC">
+        <header class="border-b border-cacao/10 pb-4">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-fresaOscura">Sección C · Hipótesis H1 – H4</p>
+          <h2 id="secC" class="font-serif text-2xl font-bold">Tu percepción sobre el sitio</h2>
+          <p class="mt-1 text-sm text-cacao/75">Indica qué tan de acuerdo estás, donde <strong>1 = Totalmente en desacuerdo</strong> y <strong>5 = Totalmente de acuerdo</strong>.</p>
+        </header>
+        <div id="bloqueSeccionC" class="space-y-6"></div>
+      </section>
+
+      <!-- ================= SECCIÓN D ================= -->
+      <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-suave space-y-5" aria-labelledby="secD">
+        <header class="border-b border-cacao/10 pb-4">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-fresaOscura">Sección D · Retroalimentación abierta</p>
+          <h2 id="secD" class="font-serif text-2xl font-bold">Comentarios para mejorar</h2>
+          <p class="mt-1 text-sm text-cacao/75">Tus respuestas aquí nos ayudan directamente en la siguiente versión de la página.</p>
+        </header>
+
+        <div>
+          <label for="q17" class="block font-bold mb-1.5">17. Cuando buscabas una opción para 50 invitados (Tarea 2), ¿intentaste primero sumar charolas en el catálogo o fuiste directo al formulario de eventos? ¿Qué duda te surgió?</label>
+          <textarea id="q17" name="q17_eventos" rows="3" placeholder="Escribe tu experiencia…"
+            class="w-full rounded-xl border border-cacao/20 bg-crema px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-fresa"></textarea>
+        </div>
+
+        <div>
+          <label for="q18" class="block font-bold mb-1.5">18. ¿Sabías para cuántas personas o rebanadas alcanza una "Charola Completa" de $300 de chocoflan o carlota al ver su tarjeta en el menú?</label>
+          <textarea id="q18" name="q18_charola" rows="2" placeholder="Ej. No decía cuántas rebanadas trae…"
+            class="w-full rounded-xl border border-cacao/20 bg-crema px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-fresa"></textarea>
+        </div>
+
+        <div>
+          <label for="q19" class="block font-bold mb-1.5">19. ¿Hubo algún botón, control (como los del video) o texto que no se viera bien en tu celular o que no entendieras para qué servía?</label>
+          <textarea id="q19" name="q19_controles" rows="2" placeholder="Ej. Todo se entendió / Me costó encontrar…"
+            class="w-full rounded-xl border border-cacao/20 bg-crema px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-fresa"></textarea>
+        </div>
+
+        <div>
+          <label for="q20" class="block font-bold mb-1.5">20. ¿Qué detalle le agregarías a la página para sentirte 100 % seguro de hacer un pedido real hoy mismo?</label>
+          <textarea id="q20" name="q20_mejora" rows="2" placeholder="Cualquier sugerencia es bienvenida…"
+            class="w-full rounded-xl border border-cacao/20 bg-crema px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-fresa"></textarea>
+        </div>
+      </section>
+
+      <!-- Alerta de validación -->
+      <div id="alertaError" class="hidden rounded-2xl border-2 border-fresaOscura bg-fresa/10 p-4 text-sm font-bold text-fresaOscura" role="alert"></div>
+
+      <!-- Botón enviar -->
+      <button id="btnEnviar" type="submit" class="w-full min-h-[56px] rounded-2xl bg-wa hover:bg-waOscuro text-cacao font-extrabold text-lg shadow-suave transition disabled:opacity-60">
+        Finalizar y guardar respuestas
+      </button>
+    </form>
+
+    <!-- ================= RESULTADO POST-ENVÍO ================= -->
+    <section id="panelFinal" class="hidden mt-8 bg-white rounded-3xl p-6 sm:p-8 shadow-suave border-2 border-wa space-y-5" aria-live="polite">
+      <div class="text-center">
+        <span class="inline-flex w-14 h-14 rounded-full bg-wa/30 items-center justify-center text-2xl font-extrabold">✓</span>
+        <h2 class="mt-3 font-serif text-2xl sm:text-3xl font-bold">¡Muchas gracias por participar!</h2>
+        <p id="estadoEnvio" class="mt-2 text-cacao/80">Tus respuestas quedaron listas. Elige cómo enviarlas o entregarlas al evaluador:</p>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-3">
+        <button id="btnCopiar" type="button" class="min-h-[50px] px-4 rounded-2xl bg-cacao text-crema font-bold text-sm hover:bg-cacao/90 transition">
+          Copiar resumen
+        </button>
+        <button id="btnCsv" type="button" class="min-h-[50px] px-4 rounded-2xl border-2 border-cacao/20 bg-crema font-bold text-sm hover:bg-vainilla transition">
+          Descargar CSV (Excel)
+        </button>
+        <a id="btnWaRespuestas" href="#" target="_blank" rel="noopener" class="min-h-[50px] px-4 rounded-2xl bg-wa hover:bg-waOscuro text-cacao font-extrabold text-sm inline-flex items-center justify-center text-center transition">
+          Enviar al evaluador por WhatsApp
+        </a>
+      </div>
+
+      <details class="rounded-2xl bg-vainilla/60 p-4 text-xs">
+        <summary class="cursor-pointer font-bold text-sm">Ver vista previa de mis respuestas</summary>
+        <pre id="vistaResumen" class="mt-3 whitespace-pre-wrap font-sans text-cacao/85 leading-relaxed"></pre>
+      </details>
+
+      <div class="text-center pt-2">
+        <button id="btnNuevo" type="button" class="text-sm font-bold text-fresaOscura underline">
+          Responder como otro participante
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="py-8 text-center text-xs text-cacao/55">
+    Postres Nube · Protocolo de Pruebas de Usabilidad (Etapa 5 DCU)
+  </footer>
+
+  <script>
+    /* =========================================================
+       OPCIONAL: Pega aquí la URL de tu Web App de Google Apps Script
+       si deseas guardar las respuestas automáticamente en Google Sheets.
+       Si se deja vacío, funciona 100% con Copiar / CSV / WhatsApp.
+    ========================================================= */
+    const ENDPOINT_SHEETS = 'https://script.google.com/macros/s/AKfycbwuixDmOUcUSAciGCQ6g646W8MJVtfkd6Be7Tr506WBKybkS8R4rGcKMP2N_VXNV_k/exec';
+    const WHATSAPP_EVALUADOR = ''; // Opcional: ej. '529711234567' si quieres envío directo
+
+    const PREGUNTAS_B = [
+      { id: 'q5', num: 5, texto: 'Comparar dos postres del menú, elegir presentación y ajustar la cantidad (- 1 +) para ver el total (Tarea 1).' },
+      { id: 'q6', num: 6, texto: 'Usar las pestañas de categorías (Todos, Flanes y carlota, Fresas con crema, Mini donitas y hotcakes) para filtrar el catálogo (Tarea 1).' },
+      { id: 'q7', num: 7, texto: 'Descubrir cómo resolver o cotizar un pedido para 50 invitados (Tarea 2).' },
+      { id: 'q8', num: 8, texto: 'Localizar el tiempo de anticipación (48–72 h), métodos de pago, zonas de entrega y alérgenos (Tarea 3).' },
+      { id: 'q9', num: 9, texto: 'Llenar el formulario de eventos, identificar si faltaba un dato y generar el mensaje a WhatsApp (Tarea 4).' },
+    ];
+
+    const PREGUNTAS_C = [
+      { id: 'q10', num: 10, hipotesis: 'H1 · Información clara', texto: '“Después de navegar por el sitio, me quedaron claros los precios, presentaciones, horarios y reglas de anticipación sin necesidad de mandar mensaje para preguntar.”' },
+      { id: 'q11', num: 11, hipotesis: 'H1 · Información clara', texto: '“Pude identificar fácilmente qué ingredientes alérgenos (leche, huevo, trigo/gluten, soya) contiene cada postre dentro de su tarjeta.”' },
+      { id: 'q12', num: 12, hipotesis: 'H2 · Pedido en pocos pasos', texto: '“El contador de cantidad (- / +) que calcula el precio total automáticamente en el botón y escribe el mensaje de WhatsApp por mí hace que pedir sea mucho más rápido.”' },
+      { id: 'q13', num: 13, hipotesis: 'H2 · Pedido en pocos pasos', texto: '“Cuando puse más de 50 personas o dejé un campo vacío en el cotizador, la alerta de la página fue clara sobre qué tenía que corregir.”' },
+      { id: 'q14', num: 14, hipotesis: 'H3 · Confianza', texto: '“Las fotos de los postres, el video de las fresas con crema, la sección ‘Hola, soy Ceci’ y las reseñas de clientes me transmiten confianza de que es un negocio real y casero en Tehuantepec.”' },
+      { id: 'q15', num: 15, hipotesis: 'H3 · Confianza', texto: '“El diseño visual (colores crema y pastel, tipografía y orden) es agradable a la vista y hace que los postres se antojen.”' },
+      { id: 'q16', num: 16, hipotesis: 'H4 · Eventos y pedidos', texto: '“Si organizara un cumpleaños o reunión familiar, preferiría usar este formulario rápido que arma el mensaje en lugar de redactar toda la cotización desde cero en WhatsApp.”' },
+    ];
+
+    function renderEscala(item, minLabel, maxLabel) {
+      const botones = [1, 2, 3, 4, 5].map((n) => `
+        <label class="escala-btn cursor-pointer">
+          <input type="radio" name="${item.id}" value="${n}" class="sr-only" required>
+          <span class="flex items-center justify-center min-h-[48px] rounded-xl border border-cacao/20 bg-crema font-extrabold text-base transition">${n}</span>
+        </label>`).join('');
+
+      return `
+        <fieldset class="rounded-2xl bg-crema/60 p-4 border border-cacao/10" data-req="${item.id}">
+          ${item.hipotesis ? `<p class="text-xs font-extrabold uppercase tracking-wider text-fresaOscura mb-1">${item.hipotesis}</p>` : ''}
+          <legend class="font-bold text-sm sm:text-base leading-snug mb-3">${item.num}. ${item.texto} <span class="text-fresaOscura">*</span></legend>
+          <div class="grid grid-cols-5 gap-2">${botones}</div>
+          <div class="mt-1.5 flex justify-between text-[11px] font-semibold text-cacao/60">
+            <span>1 · ${minLabel}</span>
+            <span>5 · ${maxLabel}</span>
+          </div>
+        </fieldset>`;
+    }
+
+    document.getElementById('bloqueSeccionB').innerHTML = PREGUNTAS_B
+      .map((p) => renderEscala(p, 'Muy difícil', 'Muy fácil')).join('');
+    document.getElementById('bloqueSeccionC').innerHTML = PREGUNTAS_C
+      .map((p) => renderEscala(p, 'En desacuerdo', 'De acuerdo')).join('');
+
+    const form = document.getElementById('formEvaluacion');
+    const progresoTexto = document.getElementById('progresoTexto');
+    const progresoBarra = document.getElementById('progresoBarra');
+    const alertaError = document.getElementById('alertaError');
+    const panelFinal = document.getElementById('panelFinal');
+    const CAMPOS_OBLIGATORIOS = [
+      'q1_nombre', 'q2_edad', 'q3_dispositivo', 'q4_frecuencia',
+      ...PREGUNTAS_B.map((p) => p.id),
+      ...PREGUNTAS_C.map((p) => p.id),
+    ];
+
+    function contarRespondidas() {
+      const fd = new FormData(form);
+      let ok = 0;
+      for (const k of CAMPOS_OBLIGATORIOS) {
+        if ((fd.get(k) || '').toString().trim() !== '') ok++;
+      }
+      progresoTexto.textContent = `${ok} / ${CAMPOS_OBLIGATORIOS.length}`;
+      progresoBarra.style.width = `${Math.round((ok / CAMPOS_OBLIGATORIOS.length) * 100)}%`;
+      return ok;
+    }
+
+    form.addEventListener('input', contarRespondidas);
+    form.addEventListener('change', contarRespondidas);
+
+    let ultimoRegistro = null;
+
+    function construirTexto(datos) {
+      return [
+        `EVALUACIÓN POSTRES NUBE (${datos.fecha})`,
+        `1. Participante: ${datos.q1_nombre} | 2. Edad: ${datos.q2_edad}`,
+        `3. Dispositivo: ${datos.q3_dispositivo}`,
+        `4. Frecuencia: ${datos.q4_frecuencia}`,
+        ``,
+        `SECCIÓN B (Facilidad SEQ 1-5):`,
+        `5(T1 menú): ${datos.q5} | 6(T1 filtros): ${datos.q6} | 7(T2 50 inv): ${datos.q7} | 8(T3 reglas/alérgenos): ${datos.q8} | 9(T4 cotizador): ${datos.q9}`,
+        ``,
+        `SECCIÓN C (Hipótesis 1-5):`,
+        `H1: P10=${datos.q10}, P11=${datos.q11}`,
+        `H2: P12=${datos.q12}, P13=${datos.q13}`,
+        `H3: P14=${datos.q14}, P15=${datos.q15}`,
+        `H4: P16=${datos.q16}`,
+        ``,
+        `SECCIÓN D (Abiertas):`,
+        `17. Eventos 50 inv: ${datos.q17_eventos || '(sin respuesta)'}`,
+        `18. Charola $300: ${datos.q18_charola || '(sin respuesta)'}`,
+        `19. Botones/controles: ${datos.q19_controles || '(sin respuesta)'}`,
+        `20. Mejora para pedir: ${datos.q20_mejora || '(sin respuesta)'}`,
+      ].join('\n');
+    }
+
+    function descargarCsv(datos) {
+      const headers = Object.keys(datos);
+      const escapar = (v) => `"${String(v ?? '').replace(/"/g, '""').replace(/\r?\n/g, ' ')}"`;
+      const csv = '\uFEFF' + headers.join(',') + '\n' + headers.map((h) => escapar(datos[h])).join(',') + '\n';
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      const slug = (datos.q1_nombre || 'participante').toLowerCase().replace(/[^a-z0-9]+/gi, '-');
+      a.download = `evaluacion-postres-nube-${slug}.csv`;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      alertaError.classList.add('hidden');
+      const fd = new FormData(form);
+      const faltantes = [];
+
+      CAMPOS_OBLIGATORIOS.forEach((k, idx) => {
+        if ((fd.get(k) || '').toString().trim() === '') faltantes.push(idx + 1);
+      });
+
+      if (faltantes.length) {
+        alertaError.textContent = `Por favor responde las preguntas obligatorias faltantes: #${faltantes.join(', #')}.`;
+        alertaError.classList.remove('hidden');
+        alertaError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      const registro = {
+        fecha: new Date().toLocaleString('es-MX'),
+        q1_nombre: fd.get('q1_nombre').trim(),
+        q2_edad: fd.get('q2_edad').trim(),
+        q3_dispositivo: fd.get('q3_dispositivo'),
+        q4_frecuencia: fd.get('q4_frecuencia'),
+        q5: fd.get('q5'), q6: fd.get('q6'), q7: fd.get('q7'), q8: fd.get('q8'), q9: fd.get('q9'),
+        q10: fd.get('q10'), q11: fd.get('q11'), q12: fd.get('q12'), q13: fd.get('q13'),
+        q14: fd.get('q14'), q15: fd.get('q15'), q16: fd.get('q16'),
+        q17_eventos: (fd.get('q17_eventos') || '').trim(),
+        q18_charola: (fd.get('q18_charola') || '').trim(),
+        q19_controles: (fd.get('q19_controles') || '').trim(),
+        q20_mejora: (fd.get('q20_mejora') || '').trim(),
+      };
+
+      ultimoRegistro = registro;
+      const historial = JSON.parse(localStorage.getItem('postres_nube_encuestas') || '[]');
+      historial.push(registro);
+      localStorage.setItem('postres_nube_encuestas', JSON.stringify(historial));
+
+      const btnEnviar = document.getElementById('btnEnviar');
+      if (ENDPOINT_SHEETS) {
+        btnEnviar.disabled = true;
+        btnEnviar.textContent = 'Enviando respuestas…';
+        try {
+          await fetch(ENDPOINT_SHEETS, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(registro),
+          });
+          document.getElementById('estadoEnvio').textContent = '¡Listo! Tus respuestas se enviaron automáticamente a Google Sheets y también puedes guardar una copia.';
+        } catch (_) {
+          // Si falla la red, el usuario aún tiene Copiar / CSV / WhatsApp
+        } finally {
+          btnEnviar.disabled = false;
+          btnEnviar.textContent = 'Finalizar y guardar respuestas';
+        }
+      }
+
+      const resumen = construirTexto(registro);
+      document.getElementById('vistaResumen').textContent = resumen;
+      const baseWa = WHATSAPP_EVALUADOR ? `https://wa.me/${WHATSAPP_EVALUADOR}` : 'https://wa.me/';
+      document.getElementById('btnWaRespuestas').href = `${baseWa}?text=${encodeURIComponent(resumen)}`;
+
+      form.classList.add('hidden');
+      panelFinal.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    async function copiarAlPortapapeles(texto) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(texto);
+        return;
+      }
+      const ta = document.createElement('textarea');
+      ta.value = texto;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+    }
+
+    document.getElementById('btnCopiar').addEventListener('click', async () => {
+      if (!ultimoRegistro) return;
+      await copiarAlPortapapeles(construirTexto(ultimoRegistro));
+      const btn = document.getElementById('btnCopiar');
+      btn.textContent = '✓ Copiado';
+      setTimeout(() => { btn.textContent = 'Copiar resumen'; }, 2000);
+    });
+
+    document.getElementById('btnCsv').addEventListener('click', () => {
+      if (ultimoRegistro) descargarCsv(ultimoRegistro);
+    });
+
+    document.getElementById('btnNuevo').addEventListener('click', () => {
+      form.reset();
+      contarRespondidas();
+      panelFinal.classList.add('hidden');
+      form.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
